@@ -1,0 +1,14 @@
+[project]
+name = "mini-cron-parse"
+version = "0.1.0"
+description = "A small library for parsing cron expressions and finding when the next scheduled run occurs after a given datetime."
+requires-python = ">=3.10"
+dependencies = []
+readme = "README.md"
+
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+where = ["src"]
