@@ -27,3 +27,10 @@ Most cron parsers are embedded in large scheduling frameworks. This library does
 - If the input datetime is itself a match, the returned time is the *next* match strictly after it.
 - The search is bounded at 4 years from the start time; if no match is found in that window (e.g., `0 0 31 2 *` with no Feb 31), `ValueError` is raised.
 - Leap seconds, DST transitions, and other timezone subtleties are the caller's responsibility. The library does naive arithmetic on the components you provide and hands back a datetime of the same type.
+
+## Design notes
+
+The window stores values eagerly rather than keeping running aggregates. Running
+sums drift with floating point over long streams, and recomputing from a small
+buffer is cheap enough that the drift is not worth the speed.
+
